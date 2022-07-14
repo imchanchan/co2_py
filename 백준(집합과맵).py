@@ -42,7 +42,7 @@ for i in result :
     print(i, end=' ')
 
 
-# 이진탐색 이용한 풀이 (인터넷참고)
+# 이진탐색 이용한 풀이
 n = int(input())
 card = list(map(int, sys.stdin.readline().split()))
 m = int(input())
@@ -158,15 +158,19 @@ print(sum_a + sum_b)
             
 
 # 백준11478번 (서로 다른 부분 문자열의 개수)
-
 N = input()
 
-result = set()
+result = []
 
+see = []
 for i in range(len(N)):
+    see.append(i)
     for j in range(i, len(N)):
         buf=N[i:j+1]
-        result.add(buf)
-    
-print(len(result))
+        result.append(buf)
+        
+re_set = set(result)
 
+print(len(re_set))
+
+# N에 문자열을 넣어준다.
