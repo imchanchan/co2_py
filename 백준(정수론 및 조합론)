@@ -1,0 +1,307 @@
+import sys
+
+# 백준 5086번 (배수와 약수)
+B=[]
+
+# 입력
+count = 0
+while(True):
+    A = list(map(int, sys.stdin.readline().split()))
+    
+    B.append(A)
+    if (A == [0,0]):
+        break
+print('입력 완료')
+
+print(B)
+print(len(B))
+
+# 비교
+for i in range(len(B)):
+    if (B[i][0]<B[i][1]):
+        if(B[i][1]%B[i][0]==0):
+            print('factor')
+        else:
+            print('neither')
+            
+    elif (B[i][0]>B[i][1]):
+        if(B[i][0]%B[i][1]==0):
+            print('multiple')
+        else:
+            print('neither')
+            
+
+
+# 백준 1037번 (약수)
+M = int(input())
+
+N = list(map(int, sys.stdin.readline().split()))    
+
+if (M==1):
+    print(N[0]*N[0])
+    
+else :
+    print(max(N)*min(N))
+    
+    
+        
+# 백준 2609번 (최대공약수와 최소공배수)
+import sys
+
+N = list(map(int, sys.stdin.readline().split()))
+
+print(N)
+
+# 약수구하기
+A = []
+for i in range(min(N)):
+    if(N[0]%(i+1)==0):
+        if(N[1]%(i+1)==0):
+            A.append(i+1)
+
+print("최대공약수")     
+print(max(A))
+
+# 배수구하기
+B = []
+a = int(N[0]/max(A))
+b = int(N[1]/max(A))
+
+print("최소공배수")
+print(max(A)*a*b)
+
+
+# 백준 1934번 (최소공배수)
+
+# 약수구하는 함수 = 제일 빠르게 실행되는 함수
+def getMyDivisor(n):
+
+    divisorsList = []
+
+    for i in range(1, int(n**(1/2)) + 1):
+        if (n % i == 0):
+            divisorsList.append(i) 
+            if ( (i**2) != n) : 
+                divisorsList.append(n // i)
+
+    divisorsList.sort()
+    
+    return set(divisorsList)
+    
+
+N = int(input())
+
+buf=[]
+for i in range(N):
+    M = list(map(int, sys.stdin.readline().split()))
+    buf.append(M)
+
+max_re = []
+for i in range(len(buf)):
+    # result는 최대공약수
+    result = max(list(set(getMyDivisor(buf[i][0]) & getMyDivisor(buf[i][1]))))
+    max_re.append(result)
+    print(result)
+
+for i in range(len(buf)):
+    a = buf[i][0]/max_re[i]
+    b = buf[i][1]/max_re[i]
+
+    print(int(max_re[i]*a*b))
+
+
+
+# 백준 2981번 (검문)
+
+# 입력
+N = int(input())
+
+buf = []
+
+for i in range(N) :
+    buf.append(int(input()))
+
+print(buf)
+
+# 과정
+result=[]
+for i in range(N) :
+    for j in range(N):
+        result[j]=buf[j]%i
+        set_result = list(set(result))
+        
+        if(len(set_result)==1):
+            print(i)
+
+
+# 백준 3036번 (링)
+
+# 입력
+N = int(input())
+M = list(map(int, sys.stdin.readline().split()))
+
+# 계산
+for i in range(1,len(M)) :
+    print(int((M[i]/M[0])*8),"/ 1")
+
+
+
+# 백준 11050번 (이항 계수 1) = 조합 nCm
+
+# 입력
+M = list(map(int, sys.stdin.readline().split()))
+
+a = 1
+for i in range(M[0],M[0]-M[1],-1):
+    a = a*i
+
+b = 1
+for i in range(1,M[0]+1):
+    b = b*(i+1)
+    
+print(int(a/b))
+
+
+
+# 백준 1010번 (다리놓기) = 조합 nCm
+
+# 입력
+N =int(input())
+
+for j in range(N):
+    M = list(map(int, sys.stdin.readline().split()))
+
+    a = 1
+    for i in range(M[1],M[1]-M[0],-1):
+        a = a*i
+
+    b = 1
+    for i in range(1,M[0]+1):
+        b = b*(i)
+
+    print(int(a/b))
+    
+    
+"""
+import sys
+    
+# 백준 9375번 (패션왕 신혜빈)    
+    
+N = int(input())
+
+list_word = []
+one_list = []
+for i in range(N) :
+    M = int(input())
+    for j in range(M):
+        word = sys.stdin.readline().split()
+        list_word.append(word)
+        
+        if(i==0):
+            one_list.append(list_word[(i)*2+j][1])
+        else :
+            one_list.append(list_word[(i)*2+j+1][1])
+        
+
+print(list_word)
+print(one_list)
+
+delete_one = list(set(one_list))
+print(delete_one)
+
+count = []
+for i in range(len(delete_one)):
+    count.append(0)
+print('1 :', count)
+
+for i in range(len(delete_one)) :
+    for j in range(len(one_list)):
+        if (delete_one[i]==one_list[j]):
+            count[i]+=1
+            
+print(count)
+
+count.sort(reverse = True)
+print(count)
+
+result = 1
+for i in count :
+    result *= i
+
+    if i ==1 :
+        break
+    
+print(result)
+
+"""
+
+# 백준 1676번 (팩토리얼 0의 개수) 
+
+# 입력
+N = int(input())
+
+# 팩토리얼 함수
+def fin(n):
+    if (n>1) :
+        return n*fin(n-1)
+    else:
+        return 1
+    
+print(fin(N))
+
+# 내방법 : 10으로 몇번 나눠지는지로 판단
+Na = 1
+count = 0
+Mo = fin(N)
+while(True):
+    Na = Mo %10
+    
+    if (Na != 0):
+        break
+    
+    Mo = Mo /10
+    count += 1
+
+# 출력
+print(count)
+
+
+
+
+# 백준 2004번 (조합 0의 개수)
+
+# 조합 nCm
+
+M = list(map(int, sys.stdin.readline().split()))
+
+a = 1
+for i in range(M[0],M[0]-M[1],-1):
+    a = a*i
+
+b = 1
+for i in range(1,M[1]+1):
+    b = b*(i)
+
+#print(int(a/b))
+
+
+# 1676에서 fin값으로 받았던 Mo의 변수값을 조합 결과값으로 바꿔준다.
+# 내방법 : 10으로 몇번 나눠지는지로 판단
+Na = 1
+count = 0
+Mo = int(a/b)
+while(True):
+    Na = Mo %10
+    
+    if (Na != 0):
+        break
+    
+    Mo = Mo /10
+    count += 1
+
+print(count)
+
+
+
+
+    
