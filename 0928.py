@@ -99,7 +99,7 @@ for i in num :
 print(count)
     
     
-# 백준 2751번 (수 정렬하기)
+# 백준 2751번 (수 정렬하기2 )
 
 # //sorted함수 이용
 N = int(input())
@@ -112,3 +112,107 @@ new = sorted(new)
 
 print(new)
 
+
+# 백준 2869번 (달팽이는 올라가고 싶다)
+A,B,V = map(int, input().split())
+
+day = 0
+count = 1
+
+day += A
+while (day < V):
+    count += 1
+    
+    day -= B
+    day += A
+    
+print(count)
+
+# 백준7568 (덩치)
+N=int(input())
+
+array = []
+for i in range(N):
+    array.append(input().split())
+
+length=len(array)
+
+res=[]
+for i in range(length):
+    count=1
+    for j in range(length):
+        if array[i][0] < array[j][0] and array[i][1]<array[j][i]:
+            count += 1
+    res.append(count)
+
+for i in res:
+    print(i, end='')
+    
+
+# 백준10814 (나이순 정렬)
+N = int(input())
+
+array = []
+for i in range(N) :
+    [a,b] = input().split() 
+    # split() = 띄어쓰기로 수를 입력받기
+    array.append([a,b])
+
+# map(자료형, 입력받는 수) = 입력받는 수를 원하는 자료형으로 바꾸기
+
+for i in range(N) :
+    array[i][0] = int(array[i][0])
+    
+print(array)
+    
+for i in range(len(array)):
+    min_index = i #가장 작은 원소의 인덱스
+    for j in range(i+1, len(array)):
+        if array[min_index][0] > array[j][0]:
+            min_index = j
+
+    array[i], array[min_index] = array[min_index], array[i] #스와프
+    
+print('1', array)
+
+
+# 백준11650 (좌표 정렬하기)
+
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+
+#좌표 입력받기
+array = []
+for i in range(N) :
+    [a,b] = map(int, input().split()) 
+    # split() = 띄어쓰기로 수를 입력받기
+    # map(자료형, 입력받는 수) = 입력받는 수를 원하는 자료형으로 바꾸기
+    array.append([a,b])
+    
+array.sort()
+
+for i in range(N) :
+    print(array[i][0], array[i][1])
+    
+
+# 백준11651 (좌표 정렬하기 2)
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+
+#좌표 입력받기
+array = []
+for i in range(N) :
+    [a,b] = map(int, input().split()) 
+    # split() = 띄어쓰기로 수를 입력받기
+    # map(자료형, 입력받는 수) = 입력받는 수를 원하는 자료형으로 바꾸기
+    array.append([b,a])
+    
+array.sort()
+
+for i in range(N) :
+    print(array[i][1], array[i][0])
+    
